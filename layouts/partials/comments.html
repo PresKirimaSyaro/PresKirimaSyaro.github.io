@@ -1,0 +1,24 @@
+{{- $g := site.Params.giscus -}}
+{{- if and site.Params.comments (ne .Params.comments false) $g.repoId $g.categoryId -}}
+<div class="giscus-comments" style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)">
+  <script src="https://giscus.app/client.js"
+    data-repo="{{ $g.repo }}" data-repo-id="{{ $g.repoId }}"
+    data-category="{{ $g.category }}" data-category-id="{{ $g.categoryId }}"
+    data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
+    data-emit-metadata="0" data-input-position="bottom"
+    data-theme="preferred_color_scheme" data-lang="zh-CN"
+    data-loading="lazy" crossorigin="anonymous" async></script>
+</div>
+<script>
+(() => {
+  function syncTheme() {
+    const iframe = document.querySelector('iframe.giscus-frame');
+    if (iframe) iframe.contentWindow.postMessage({giscus:{setConfig:{theme:document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light'}}}, 'https://giscus.app');
+  }
+  new MutationObserver(syncTheme).observe(document.documentElement, {attributes:true, attributeFilter:['data-theme']});
+  window.addEventListener('message', event => {
+    if (event.origin === 'https://giscus.app' && event.data?.giscus) syncTheme();
+  });
+})();
+</script>
+{{- end -}}

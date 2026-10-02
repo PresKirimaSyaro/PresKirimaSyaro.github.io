@@ -1,0 +1,28 @@
+# Hugo 生成的文件
+public/
+resources/_gen/
+.hugo_build.lock
+
+# 操作系统文件
+.DS_Store
+Thumbs.db
+
+# IDE / 编辑器文件
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Claude Code 配置（包含敏感信息）
+.claude/
+
+# Node.js（如果使用 npm）
+node_modules/
+package-lock.json
+
+# 临时文件
+*.log
+.env
+
+local/
