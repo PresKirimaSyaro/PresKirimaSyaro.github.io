@@ -1,5 +1,5 @@
 baseURL: "https://preskirimasyaro.github.io/"
-title: "Presks Blog"
+title: "PresKS Blog"
 languageCode: "zh-cn"
 defaultContentLanguage: "zh"
 hasCJKLanguage: true
@@ -38,16 +38,16 @@ minify:
 # PaperMod 主题参数
 params:
   env: production  # 启用分析和生产特性
-  title: "Presks Blog"
+  title: "PresKS Blog"
   description: "基于 Hugo 和 PaperMod 主题的个人博客"
   keywords: [博客, 技术分享, 个人作品]
-  author: "Presks"
+  author: "PresKirimaSyaro"
 
   # 显示设置
   defaultTheme: auto  # auto, dark, light
   disableThemeToggle: false
   ShowReadingTime: true
-  ShowShareButtons: true
+  ShowShareButtons: false
   ShowPostNavLinks: true
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
@@ -64,9 +64,9 @@ params:
 
   # 首页信息
   homeInfoParams:
-    Title: "欢迎来到 Presks Blog"
+    Title: "欢迎来到 PresKS Blog"
     Content: >
-      探索技术、编程和思想。
+      这是一个普通的博客。
       本站使用 Hugo 和 PaperMod 主题构建。
 
   # 社交链接
@@ -77,7 +77,7 @@ params:
   # 编辑文章链接
   editPost:
     URL: "https://github.com/PresKirimaSyaro/PresKirimaSyaro.github.io/tree/main/content"
-    Text: "建议修改"
+    Text: "查看源码"
     appendFilePath: true
 
   giscus:
@@ -107,10 +107,6 @@ menu:
       name: 文章
       url: /posts/
       weight: 20
-    - identifier: gallery
-      name: 图册
-      url: /gallery/
-      weight: 25
     - identifier: archives
       name: 归档
       url: /archives/

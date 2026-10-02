@@ -1,0 +1,51 @@
+/* Global wallpaper; keep navigation and reading surfaces legible. */
+:root {
+    --wallpaper-overlay: rgba(255, 255, 255, 0.12);
+    --reading-surface: rgba(255, 255, 255, 0.80);
+    --chrome-surface: rgba(255, 255, 255, 0.88);
+    --main-width: 1000px;
+}
+:root[data-theme="dark"] {
+    --wallpaper-overlay: rgba(0, 0, 0, 0.30);
+    --reading-surface: rgba(29, 30, 32, 0.82);
+    --chrome-surface: rgba(29, 30, 32, 0.90);
+    --main-width: 1000px;
+}
+body {
+    isolation: isolate;
+}
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: linear-gradient(var(--wallpaper-overlay), var(--wallpaper-overlay)), url("/images/background/14.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.header {
+    background: var(--chrome-surface);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+}
+.main {
+    margin-top: var(--gap);
+    margin-bottom: var(--gap);
+    min-height: calc(100vh - var(--header-height) - var(--footer-height) - var(--gap) * 2);
+    border-radius: var(--radius);
+    background: var(--reading-surface);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+.footer {
+    max-width: none;
+    background: var(--chrome-surface);
+}
+@media (max-width: 768px) {
+    .main {
+        margin-inline: 12px;
+    }
+}

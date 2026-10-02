@@ -4,7 +4,7 @@ date: {{ .Date }}
 draft: true
 tags: []
 categories: []
-author: "Presks"
+author: "PresKirimaSyaro"
 showToc: true
 TocOpen: false
 description: ""

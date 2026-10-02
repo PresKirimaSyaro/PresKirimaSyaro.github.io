@@ -1,5 +1,5 @@
 ---
-title: "欢迎来到 Presks Blog"
+title: "欢迎来到 PresKS Blog"
 date: 2026-10-02T12:00:00+08:00
 draft: false
 slug: "welcome"

@@ -7,7 +7,7 @@ ShowReadingTime: false
 
 ## 关于本站
 
-这里是 Presks 的个人博客。
+这里是 PresKS 的个人博客。
 
 本站采用 Hugo 和 PaperMod 主题，通过 GitHub Actions 构建并托管于 GitHub Pages。
 

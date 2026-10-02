@@ -5,7 +5,7 @@ draft: false
 slug: "hugo-setup"
 tags: ["Hugo", "教程"]
 categories: ["技术"]
-summary: "如何预览博客、创建文章、添加相册，以及通过 GitHub Pages 发布更新。"
+summary: "如何预览博客、创建文章、插入图片，以及通过 GitHub Pages 发布更新。"
 ---
 
 ## 本地预览
@@ -23,10 +23,32 @@ hugo server -D
 
 文章放在 `content/posts/`，支持标题、日期、摘要、标签和分类。使用 `hugo new content posts/文章名.md` 创建草稿。
 
-## 添加相册
+## 插入图片
 
-在 `content/gallery/` 下创建目录和 `index.md`，将图片放在 `static/images/` 中。在相册头部的 `photos` 列表填写图片路径、描述和实际宽高。可以参考示例相册。
+图片可以和文章一起提交到博客仓库，不需要图床。推荐每篇文章使用一个目录：
+
+```text
+content/posts/my-post/
+├── index.md
+└── screenshot.webp
+```
+
+在 `index.md` 中引用同目录图片：
+
+```markdown
+![图片说明](screenshot.webp)
+```
+
+文章的 front matter 中可设置 `slug: "my-post"` 来固定网址。文章文件应命名为 `index.md`。
+
+也可以将多篇文章共用的图片放在 `static/images/`，例如 `static/images/example.webp`，然后在正文引用：
+
+```markdown
+![图片说明](/images/example.webp)
+```
+
+将文章和图片一起提交并推送到 `main`，自动部署后图片即可访问。建议上传前压缩图片并使用简短文件名。图片很多或需要独立管理时，可以使用图床并引用其公开 HTTPS 图片链接。
 
 ## 发布更新
 
-仓库 Settings → Pages → Build and deployment 的 Source 选择 **GitHub Actions**。推送到 `main` 后，工作流会构建并部署网站。详细设置见仓库 README。
+仓库 Settings → Pages → Build and deployment 的 Source 选择 **GitHub Actions**。推送到 `main` 后，工作流会构建并部署网站。部署地址可在工作流运行结果中查看。
