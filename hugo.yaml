@@ -1,4 +1,4 @@
-baseURL: "https://preskirimasyaro.github.io/presks.github.io/"
+baseURL: "https://preskirimasyaro.github.io/"
 title: "Presks Blog"
 languageCode: "zh-cn"
 defaultContentLanguage: "zh"
@@ -76,12 +76,12 @@ params:
 
   # 编辑文章链接
   editPost:
-    URL: "https://github.com/PresKirimaSyaro/presks.github.io/tree/main/content"
+    URL: "https://github.com/PresKirimaSyaro/PresKirimaSyaro.github.io/tree/main/content"
     Text: "建议修改"
     appendFilePath: true
 
   giscus:
-    repo: "PresKirimaSyaro/presks.github.io"
+    repo: "PresKirimaSyaro/PresKirimaSyaro.github.io"
     repoId: ""
     category: "General"
     categoryId: ""
