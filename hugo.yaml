@@ -67,7 +67,7 @@ params:
   homeInfoParams:
     Title: "欢迎来到 PresKS Blog"
     Content: >
-      这是一个普通的博客。
+      这是一个博客。
       使用 Hugo 和 PaperMod 主题构建。
 
   # 社交链接
