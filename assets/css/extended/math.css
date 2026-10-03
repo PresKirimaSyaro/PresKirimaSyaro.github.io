@@ -1,0 +1,7 @@
+/* Allow wide equations to scroll without widening the page on mobile. */
+.post-content mjx-container[display="true"] {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-block: 0.5em;
+}

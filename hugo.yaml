@@ -37,6 +37,7 @@ minify:
 
 # PaperMod 主题参数
 params:
+  math: true # 全站启用数学公式，可在单篇文章中设置 math: false
   env: production  # 启用分析和生产特性
   title: "PresKS Blog"
   description: "基于 Hugo 和 PaperMod 主题的个人博客"
@@ -67,7 +68,7 @@ params:
     Title: "欢迎来到 PresKS Blog"
     Content: >
       这是一个普通的博客。
-      本站使用 Hugo 和 PaperMod 主题构建。
+      使用 Hugo 和 PaperMod 主题构建。
 
   # 社交链接
   socialIcons:
@@ -133,8 +134,14 @@ taxonomies:
 # Markdown 渲染设置
 markup:
   goldmark:
+    extensions:
+      passthrough:
+        enable: true
+        delimiters:
+          block: [['\[', '\]'], ['$$', '$$']]
+          inline: [['\(', '\)'], ['$', '$']]
     renderer:
-      unsafe: true  # 允许 Markdown 中使用 HTML
+      unsafe: true
   highlight:
     noClasses: false
     anchorLineNos: true
@@ -149,5 +156,3 @@ privacy:
     anonymizeIP: true
     respectDoNotTrack: true
     useSessionStorage: false
-
-
