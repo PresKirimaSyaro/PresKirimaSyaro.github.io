@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='utf8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960px" height="545px" viewBox="0.00 0.00 960.00 545.00">
+<style>svg { color-scheme: light dark; } @supports (color: light-dark(#000, #fff)) { ellipse { stroke: light-dark(#000, #fff); } ellipse[fill="white"] { fill: light-dark(#fff, #121212); } path, polygon { stroke: light-dark(#000, #fff); } polygon { fill: light-dark(#000, #fff); } text { fill: light-dark(#000, #fff); } }</style><g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(18 434.5)">
+<title>DFA</title>
+
+
+<g id="node2" class="node">
+<title>A</title>
+<ellipse fill="white" stroke="black" cx="100.36" cy="-284" rx="40" ry="40" />
+<text xml:space="preserve" text-anchor="middle" x="100.36" y="-273.15" font-family="Helvetica,sans-Serif" font-size="28.00">A</text>
+</g>
+
+<g id="edge1" class="edge">
+<title>start-&gt;A</title>
+<path fill="none" stroke="black" d="M1,-284C5.15,-284 28.9,-284 52.13,-284" />
+<polygon fill="black" stroke="black" points="51.95,-286.28 58.45,-284 51.95,-281.73 51.95,-286.28" />
+</g>
+
+<g id="edge2" class="edge">
+<title>A:n-&gt;A:n</title>
+<path fill="none" stroke="black" d="M100.36,-324.37C130.86,-344.33 130.86,-385 100.36,-385 72.12,-385 70.03,-350.15 94.07,-329.14" />
+<polygon fill="black" stroke="black" points="95.34,-331.03 99.15,-325.29 92.6,-327.4 95.34,-331.03" />
+<text xml:space="preserve" text-anchor="middle" x="100.36" y="-389.9" font-family="Helvetica,sans-Serif" font-size="28.00">0</text>
+</g>
+
+<g id="node3" class="node">
+<title>AB</title>
+<ellipse fill="white" stroke="black" cx="360.36" cy="-284" rx="40" ry="40" />
+<text xml:space="preserve" text-anchor="middle" x="360.36" y="-273.15" font-family="Helvetica,sans-Serif" font-size="28.00">AB</text>
+</g>
+
+<g id="edge3" class="edge">
+<title>A-&gt;AB</title>
+<path fill="none" stroke="black" d="M140.7,-284C186.91,-284 262.58,-284 311.94,-284" />
+<polygon fill="black" stroke="black" points="311.91,-286.28 318.41,-284 311.91,-281.73 311.91,-286.28" />
+<text xml:space="preserve" text-anchor="middle" x="222.33" y="-288.9" font-family="Helvetica,sans-Serif" font-size="28.00">1</text>
+</g>
+
+<g id="node4" class="node">
+<title>AC</title>
+<ellipse fill="white" stroke="black" cx="620.36" cy="-284" rx="40" ry="40" />
+<text xml:space="preserve" text-anchor="middle" x="620.36" y="-273.15" font-family="Helvetica,sans-Serif" font-size="28.00">AC</text>
+</g>
+
+<g id="edge4" class="edge">
+<title>AB-&gt;AC</title>
+<path fill="none" stroke="black" d="M400.7,-284C446.91,-284 522.58,-284 571.94,-284" />
+<polygon fill="black" stroke="black" points="571.91,-286.28 578.41,-284 571.91,-281.73 571.91,-286.28" />
+<text xml:space="preserve" text-anchor="middle" x="482.33" y="-288.9" font-family="Helvetica,sans-Serif" font-size="28.00">0</text>
+</g>
+
+<g id="node5" class="node">
+<title>ABC</title>
+<ellipse fill="white" stroke="black" cx="880.36" cy="-284" rx="40" ry="40" />
+<text xml:space="preserve" text-anchor="middle" x="880.36" y="-273.15" font-family="Helvetica,sans-Serif" font-size="28.00">ABC</text>
+</g>
+
+<g id="edge5" class="edge">
+<title>AB-&gt;ABC</title>
+<path fill="none" stroke="black" d="M399.19,-272.85C449.69,-259.36 540.85,-238.43 620.36,-238.43 695.99,-238.43 782.16,-257.37 833.85,-270.83" />
+<polygon fill="black" stroke="black" points="833.2,-273.01 840.07,-272.47 834.36,-268.61 833.2,-273.01" />
+<text xml:space="preserve" text-anchor="middle" x="612.93" y="-211.83" font-family="Helvetica,sans-Serif" font-size="28.00">1</text>
+</g>
+
+<g id="node6" class="node">
+<title>AD</title>
+<ellipse fill="white" stroke="black" cx="100.36" cy="-44" rx="40" ry="40" />
+<ellipse fill="none" stroke="black" cx="100.36" cy="-44" rx="45" ry="45" />
+<text xml:space="preserve" text-anchor="middle" x="100.36" y="-33.15" font-family="Helvetica,sans-Serif" font-size="28.00">AD</text>
+</g>
+
+<g id="edge6" class="edge">
+<title>AC-&gt;AD</title>
+<path fill="none" stroke="black" d="M583.79,-267.12C491.68,-224.61 250.17,-113.14 147.56,-65.79" />
+<polygon fill="black" stroke="black" points="148.65,-63.78 141.8,-63.12 146.74,-67.91 148.65,-63.78" />
+<text xml:space="preserve" text-anchor="middle" x="354.29" y="-169.73" font-family="Helvetica,sans-Serif" font-size="28.00">0</text>
+</g>
+
+<g id="node7" class="node">
+<title>ABD</title>
+<ellipse fill="white" stroke="black" cx="360.36" cy="-44" rx="40" ry="40" />
+<ellipse fill="none" stroke="black" cx="360.36" cy="-44" rx="45" ry="45" />
+<text xml:space="preserve" text-anchor="middle" x="360.36" y="-33.15" font-family="Helvetica,sans-Serif" font-size="28.00">ABD</text>
+</g>
+
+<g id="edge7" class="edge">
+<title>AC-&gt;ABD</title>
+<path fill="none" stroke="black" d="M602.63,-247.88C562.18,-196.82 466.02,-107.33 407.36,-65.43" />
+<polygon fill="black" stroke="black" points="408.97,-63.78 402.34,-61.91 406.36,-67.5 408.97,-63.78" />
+<text xml:space="preserve" text-anchor="middle" x="499.24" y="-153.75" font-family="Helvetica,sans-Serif" font-size="28.00">1</text>
+</g>
+
+<g id="node8" class="node">
+<title>ACD</title>
+<ellipse fill="white" stroke="black" cx="620.36" cy="-44" rx="40" ry="40" />
+<ellipse fill="none" stroke="black" cx="620.36" cy="-44" rx="45" ry="45" />
+<text xml:space="preserve" text-anchor="middle" x="620.36" y="-33.15" font-family="Helvetica,sans-Serif" font-size="28.00">ACD</text>
+</g>
+
+<g id="edge8" class="edge">
+<title>ABC-&gt;ACD</title>
+<path fill="none" stroke="black" d="M850.79,-256.7C803.5,-213.05 710.87,-127.55 658.61,-79.31" />
+<polygon fill="black" stroke="black" points="660.18,-77.66 653.86,-74.93 657.1,-81.01 660.18,-77.66" />
+<text xml:space="preserve" text-anchor="middle" x="744.1" y="-170.39" font-family="Helvetica,sans-Serif" font-size="28.00">0</text>
+</g>
+
+<g id="node9" class="node">
+<title>ABCD</title>
+<ellipse fill="white" stroke="black" cx="880.36" cy="-44" rx="40" ry="40" />
+<ellipse fill="none" stroke="black" cx="880.36" cy="-44" rx="45" ry="45" />
+<text xml:space="preserve" text-anchor="middle" x="880.36" y="-48.9" font-family="Helvetica,sans-Serif" font-size="28.00">AB</text>
+<text xml:space="preserve" text-anchor="middle" x="880.36" y="-17.4" font-family="Helvetica,sans-Serif" font-size="28.00">CD</text>
+</g>
+
+<g id="edge9" class="edge">
+<title>ABC-&gt;ABCD</title>
+<path fill="none" stroke="black" d="M880.36,-243.56C880.36,-202.98 880.36,-140.31 880.36,-96.04" />
+<polygon fill="black" stroke="black" points="882.64,-96.29 880.36,-89.79 878.09,-96.29 882.64,-96.29" />
+<text xml:space="preserve" text-anchor="middle" x="872.49" y="-170.54" font-family="Helvetica,sans-Serif" font-size="28.00">1</text>
+</g>
+
+<g id="edge10" class="edge">
+<title>AD-&gt;A</title>
+<path fill="none" stroke="black" d="M100.36,-88.3C100.36,-130.12 100.36,-192.68 100.36,-235.75" />
+<polygon fill="black" stroke="black" points="98.09,-235.54 100.36,-242.04 102.64,-235.54 98.09,-235.54" />
+<text xml:space="preserve" text-anchor="middle" x="92.48" y="-170.76" font-family="Helvetica,sans-Serif" font-size="28.00">0</text>
+</g>
+
+<g id="edge11" class="edge">
+<title>AD-&gt;AB</title>
+<path fill="none" stroke="black" d="M133.03,-74.15C182.14,-119.49 274.63,-204.87 325.18,-251.53" />
+<polygon fill="black" stroke="black" points="323.4,-252.98 329.72,-255.72 326.49,-249.64 323.4,-252.98" />
+<text xml:space="preserve" text-anchor="middle" x="224.03" y="-170.32" font-family="Helvetica,sans-Serif" font-size="28.00">1</text>
+</g>
+
+<g id="edge12" class="edge">
+<title>ABD-&gt;AC</title>
+<path fill="none" stroke="black" d="M380.34,-83.73C422.81,-136.53 519.16,-225.68 576.45,-265.39" />
+<polygon fill="black" stroke="black" points="574.99,-267.15 581.65,-268.91 577.54,-263.38 574.99,-267.15" />
+<text xml:space="preserve" text-anchor="middle" x="468.18" y="-187.34" font-family="Helvetica,sans-Serif" font-size="28.00">0</text>
+</g>
+
+<g id="edge13" class="edge">
+<title>ABD-&gt;ABC</title>
+<path fill="none" stroke="black" d="M400.73,-62.63C496.64,-106.9 737.56,-218.09 836.7,-263.85" />
+<polygon fill="black" stroke="black" points="835.64,-265.87 842.49,-266.52 837.55,-261.73 835.64,-265.87" />
+<text xml:space="preserve" text-anchor="middle" x="614.59" y="-169.87" font-family="Helvetica,sans-Serif" font-size="28.00">1</text>
+</g>
+
+<g id="edge14" class="edge">
+<title>ACD-&gt;AD</title>
+<path fill="none" stroke="black" d="M578.05,-30.76C526.99,-15.98 438.27,5.9 360.36,5.9 286.11,5.9 202.02,-13.97 150.09,-28.64" />
+<polygon fill="black" stroke="black" points="149.75,-26.37 144.12,-30.34 151,-30.74 149.75,-26.37" />
+<text xml:space="preserve" text-anchor="middle" x="352.05" y="32.5" font-family="Helvetica,sans-Serif" font-size="28.00">0</text>
+</g>
+
+<g id="edge15" class="edge">
+<title>ACD-&gt;ABD</title>
+<path fill="none" stroke="black" d="M575.96,-44C530.62,-44 460.28,-44 412.36,-44" />
+<polygon fill="black" stroke="black" points="412.59,-41.73 406.09,-44 412.59,-46.28 412.59,-41.73" />
+<text xml:space="preserve" text-anchor="middle" x="482.45" y="-48.9" font-family="Helvetica,sans-Serif" font-size="28.00">1</text>
+</g>
+
+<g id="edge16" class="edge">
+<title>ABCD-&gt;ACD</title>
+<path fill="none" stroke="black" d="M835.96,-44C790.62,-44 720.28,-44 672.36,-44" />
+<polygon fill="black" stroke="black" points="672.59,-41.73 666.09,-44 672.59,-46.28 672.59,-41.73" />
+<text xml:space="preserve" text-anchor="middle" x="742.45" y="-48.9" font-family="Helvetica,sans-Serif" font-size="28.00">0</text>
+</g>
+
+<g id="edge17" class="edge">
+<title>ABCD:s-&gt;ABCD:s</title>
+<path fill="none" stroke="black" d="M880.36,0.41C910.86,20.33 910.86,61 880.36,61 852.12,61 850.03,26.15 874.07,5.17" />
+<polygon fill="black" stroke="black" points="872.6,3.43 879.15,1.33 875.34,7.06 872.6,3.43" />
+<text xml:space="preserve" text-anchor="middle" x="880.36" y="87.6" font-family="Helvetica,sans-Serif" font-size="28.00">1</text>
+</g>
+</g>
+</svg>
