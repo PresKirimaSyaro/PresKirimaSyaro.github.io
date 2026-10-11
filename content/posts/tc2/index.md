@@ -11,7 +11,7 @@ description: ""
 summary: ""
 comments: true
 slug: "tc2"
-weight: 2
+weight: 12
 ---
 
 ## 语言是什么

@@ -10,7 +10,7 @@ TocOpen: false
 description: ""
 summary: ""
 comments: true
-weight: 3
+weight: 13
 ---
 
 ## 非确定性计算

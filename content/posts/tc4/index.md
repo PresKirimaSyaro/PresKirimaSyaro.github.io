@@ -10,7 +10,7 @@ TocOpen: false
 description: ""
 summary: ""
 comments: true
-weight: 4
+weight: 14
 ---
 
 ## 正则语言在正则运算下的封闭性
