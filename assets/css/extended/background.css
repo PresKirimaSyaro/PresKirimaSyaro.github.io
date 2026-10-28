@@ -20,7 +20,7 @@ body::before {
     inset: 0;
     z-index: -1;
     pointer-events: none;
-    background-image: linear-gradient(var(--wallpaper-overlay), var(--wallpaper-overlay)), url("/images/background/14.jpg");
+    background-image: linear-gradient(var(--wallpaper-overlay), var(--wallpaper-overlay)), var(--wallpaper-image, url("/images/background/0.png"));
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
