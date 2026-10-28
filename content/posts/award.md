@@ -1,5 +1,7 @@
 ---
 title: "吮指原味鸡"
+slug: "award"
+aliases: ["/posts/吮指原味鸡/"]
 date: 2026-10-28T21:32:11+08:00
 draft: false
 tags: ["序言"]

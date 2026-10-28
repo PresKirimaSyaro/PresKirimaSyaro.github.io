@@ -1,5 +1,7 @@
 ---
 title: "廉价咖啡"
+slug: "preface"
+aliases: ["/posts/廉价咖啡/"]
 date: 2026-05-05T20:16:08+08:00
 draft: false
 tags: ["序言"]
