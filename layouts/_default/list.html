@@ -43,7 +43,8 @@
 {{- if .IsHome }}
 {{- $pages = where site.RegularPages "Type" "in" site.Params.mainSections }}
 {{- $pages = where $pages "Params.hiddenInHomeList" "!=" "true"  }}
-{{- /* Sort only the home feed; preserve article navigation and section order. */ -}}
+{{- $pages = $pages.ByWeight.Reverse }}
+{{- else if and (eq .Kind "section") (eq .Section "posts") }}
 {{- $pages = $pages.ByPublishDate.Reverse }}
 {{- end }}
 

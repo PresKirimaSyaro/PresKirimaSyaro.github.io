@@ -1,7 +1,7 @@
 ---
 title: "吮指原味鸡"
 date: 2026-10-28T21:32:11+08:00
-draft: true
+draft: false
 tags: ["序言"]
 categories: ["随笔"]
 author: "PresKirimaSyaro"
