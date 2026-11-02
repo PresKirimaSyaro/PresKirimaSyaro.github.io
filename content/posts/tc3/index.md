@@ -4,8 +4,8 @@ slug: "tc3"
 aliases: ["/posts/计算理论导引-3.非确定性/"]
 date: 2026-10-04T20:35:09+08:00
 draft: false
-tags: ["计算理论"]
-categories: ["笔记"]
+tags: ["笔记"]
+categories: ["计算理论"]
 author: "PresKirimaSyaro"
 showToc: true
 TocOpen: false

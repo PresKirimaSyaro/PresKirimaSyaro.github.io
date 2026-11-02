@@ -4,8 +4,8 @@ slug: "tc5"
 aliases: ["/posts/计算理论导引-5.正则语言泵引理/"]
 date: 2026-10-11T10:06:44+08:00
 draft: false
-tags: ["计算理论"]
-categories: ["笔记"]
+tags: ["笔记"]
+categories: ["计算理论"]
 author: "PresKirimaSyaro"
 showToc: true
 TocOpen: false

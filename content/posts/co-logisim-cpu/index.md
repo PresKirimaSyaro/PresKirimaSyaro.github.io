@@ -3,8 +3,8 @@ title: "[计组实验] P3课下 Logisim 单周期 CPU 设计"
 slug: "co-logisim-cpu"
 date: 2026-11-02T18:02:54+08:00
 draft: false
-tags: ["计算机组成"]
-categories: ["笔记"]
+tags: ["笔记"]
+categories: ["计算机组成"]
 author: "PresKirimaSyaro"
 showToc: true
 TocOpen: false

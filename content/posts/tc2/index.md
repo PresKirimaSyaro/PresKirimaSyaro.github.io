@@ -2,8 +2,8 @@
 title: "[计算理论导引] 2.正则语言和正则运算"
 date: 2026-10-03T14:39:01+08:00
 draft: false
-tags: ["计算理论"]
-categories: ["笔记"]
+tags: ["笔记"]
+categories: ["计算理论"]
 author: "PresKirimaSyaro"
 showToc: true
 TocOpen: false

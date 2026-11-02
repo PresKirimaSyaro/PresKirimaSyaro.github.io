@@ -2,8 +2,8 @@
 title: "[计算理论导引] 1.确定性有限自动机"
 date: 2026-10-03T00:27:55+08:00
 draft: false
-tags: ["计算理论"]
-categories: ["笔记"]
+tags: ["笔记"]
+categories: ["计算理论"]
 author: "PresKirimaSyaro"
 showToc: true
 TocOpen: false

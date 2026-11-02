@@ -4,8 +4,8 @@ slug: "tc4"
 aliases: ["/posts/计算理论导引-4.正则表达式/"]
 date: 2026-10-10T22:15:54+08:00
 draft: false
-tags: ["计算理论"]
-categories: ["笔记"]
+tags: ["笔记"]
+categories: ["计算理论"]
 author: "PresKirimaSyaro"
 showToc: true
 TocOpen: false
