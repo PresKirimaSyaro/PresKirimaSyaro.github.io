@@ -2,7 +2,7 @@
 title: "[计组实验] P3 MIPS 单周期 CPU 设计"
 slug: "cop3"
 date: 2026-11-02T21:23:30+08:00
-draft: true
+draft: false
 tags: ["笔记"]
 categories: ["计算机组成"]
 author: "PresKirimaSyaro"

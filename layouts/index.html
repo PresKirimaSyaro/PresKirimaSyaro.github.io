@@ -1,0 +1,70 @@
+{{- define "main" }}
+{{- if site.Params.profileMode.enabled }}
+  {{- partial "index_profile.html" . }}
+{{- else }}
+  {{- with .Content }}
+  <div class="post-content">{{ . }}</div>
+  {{- end }}
+  {{- if site.Params.homeInfoParams }}
+    {{- partial "home_info.html" . }}
+  {{- end }}
+
+  {{/* Keep the homepage's existing descending weight order within every group. */}}
+  {{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
+  {{- $pages = where $pages "Params.hiddenInHomeList" "!=" "true" }}
+  {{- $pages = $pages.ByWeight.Reverse }}
+  {{- $terms := dict }}
+  {{- $names := slice }}
+  {{- $uncategorized := slice }}
+  {{- range $pages }}
+    {{- $categories := .GetTerms "categories" }}
+    {{- if $categories }}
+      {{- range $categories }}
+        {{- $terms = merge $terms (dict .LinkTitle .) }}
+        {{- if not (in $names .LinkTitle) }}
+          {{- $names = $names | append .LinkTitle }}
+        {{- end }}
+      {{- end }}
+    {{- else }}
+      {{- $uncategorized = $uncategorized | append . }}
+    {{- end }}
+  {{- end }}
+  {{- $ordered := slice }}
+  {{- range site.Params.homeCategoryOrder }}
+    {{- if and (in $names .) (not (in $ordered .)) }}
+      {{- $ordered = $ordered | append . }}
+    {{- end }}
+  {{- end }}
+  {{/* New categories are included automatically after configured categories. */}}
+  {{- range sort $names }}
+    {{- if not (in $ordered .) }}
+      {{- $ordered = $ordered | append . }}
+    {{- end }}
+  {{- end }}
+  <div class="home-categories">
+    {{- range $ordered }}
+      {{- $category := index $terms . }}
+      {{- $group := intersect $pages $category.RegularPages }}
+      <details class="home-category" open>
+        <summary><span>{{ . }}</span><span class="home-category-count">{{ len $group }} 篇</span></summary>
+        <div class="home-category-posts">
+          {{- range $group }}
+            {{- partial "home_post_entry.html" . }}
+          {{- end }}
+        </div>
+      </details>
+    {{- end }}
+    {{- with $uncategorized }}
+      <details class="home-category" open>
+        <summary><span>未分类</span><span class="home-category-count">{{ len . }} 篇</span></summary>
+        <div class="home-category-posts">
+          {{- range . }}
+            {{- partial "home_post_entry.html" . }}
+          {{- end }}
+        </div>
+      </details>
+    {{- end }}
+  </div>
+{{- end }}
+{{- end }}
+

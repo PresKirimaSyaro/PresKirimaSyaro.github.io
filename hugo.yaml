@@ -63,6 +63,12 @@ params:
   showtoc: true
   tocopen: false
 
+  # 首页分类顺序：调整下面的顺序即可；未列出的新分类自动排在后面，未分类文章放最后。
+  homeCategoryOrder:
+    - 计算机组成
+    - 计算理论
+    - 随笔
+
   # 首页信息
   homeInfoParams:
     Title: "欢迎来到 PresKS Blog"

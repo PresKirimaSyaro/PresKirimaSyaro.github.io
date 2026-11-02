@@ -1,0 +1,31 @@
+.home-category {
+  margin-bottom: 24px;
+}
+.home-category > summary {
+  cursor: pointer;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--entry);
+  color: var(--primary);
+  font-size: 20px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.home-category > summary:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+.home-category-count {
+  margin-inline-start: 12px;
+  color: var(--secondary);
+  font-size: 14px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+.home-category-posts {
+  padding-top: 16px;
+}
+.home-category-posts > .post-entry:last-child {
+  margin-bottom: 0;
+}
