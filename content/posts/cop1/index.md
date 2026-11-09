@@ -1,5 +1,5 @@
 ---
-title: "[计组实验] P1 Verilog"
+title: "[计组实验] P1考试 Verilog"
 slug: "cop1"
 aliases: ["/posts/计组实验-p1-verilog/"]
 date: 2026-10-19T22:32:19+08:00
