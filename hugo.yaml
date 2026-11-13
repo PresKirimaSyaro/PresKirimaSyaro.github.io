@@ -37,6 +37,11 @@ minify:
 
 # PaperMod 主题参数
 params:
+  # 文章正文末尾的 Moe Counter 浏览次数；本地 hugo server 预览不加载。
+  moeCounter:
+    enabled: true
+    theme: moebooru
+
   math: true # 全站启用数学公式，可在单篇文章中设置 math: false
   env: production  # 启用分析和生产特性
   title: "PresKS Blog"

@@ -1,0 +1,19 @@
+.post-views {
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.post-views-title {
+  margin-bottom: 12px;
+  color: var(--secondary);
+  font-size: 14px;
+}
+
+.post-views img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-inline: auto;
+}

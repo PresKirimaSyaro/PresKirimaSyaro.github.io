@@ -1,0 +1,10 @@
+{{- if and (eq .Section "posts") site.Params.moeCounter.enabled (not hugo.IsServer) }}
+  {{/* Moe Counter limits names to 32 characters. The canonical URL gives each post a stable, site-specific name. */}}
+  {{- $name := md5 .Permalink }}
+  {{- $theme := site.Params.moeCounter.theme | default "moebooru" }}
+  {{- $url := printf "https://count.getloli.com/@%s?%s" $name (querify "theme" $theme "padding" "7" "darkmode" "auto") }}
+  <section class="post-views" aria-label="文章浏览次数">
+    <p class="post-views-title">浏览次数</p>
+    <img src="{{ $url }}" alt="本文浏览次数（Moe Counter）" decoding="async" referrerpolicy="no-referrer">
+  </section>
+{{- end }}
