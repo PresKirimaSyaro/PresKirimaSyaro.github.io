@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3f7f4">
+  <meta name="description" content="根据体重和给药次数计算实验用量，支持原液和工作液。">
+  <title>Ω计算器</title>
+  <style>
+    :root { color-scheme: light; --ink: #172e24; --muted: #4c6258; --accent: #176040; --line: #d3e2d8; --soft: #edf5ef; }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; background: #f3f7f4; color: var(--ink); font: 1rem/1.5 system-ui, sans-serif; }
+    main { width: min(100%, 42rem); margin-inline: auto; padding: 1.5rem 1rem 2.5rem; }
+    header { margin-bottom: 1.25rem; }
+    h1, h2, h3, p, dl { margin: 0; }
+    h1 { font-size: clamp(1.65rem, 6vw, 2.15rem); line-height: 1.2; letter-spacing: -.025em; }
+    h2 { font-size: 1.125rem; }
+    h3 { font-size: 1rem; }
+    .muted, .unit { color: var(--muted); }
+    .small { font-size: .875rem; }
+    .panel { background: #fff; border: 1px solid var(--line); border-radius: 1rem; padding: 1rem; margin-block: .75rem; }
+    .heading { display: flex; align-items: center; justify-content: space-between; gap: .5rem; flex-wrap: wrap; }
+    .fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+    .fields, .advanced { margin-top: .65rem; }
+    label { display: block; min-width: 0; font-size: .875rem; font-weight: 600; }
+    .unit { white-space: nowrap; font-weight: 400; }
+    input, select { display: block; width: 100%; min-width: 0; min-height: 2.75rem; margin-top: .3rem; padding: .5rem .55rem; border: 1px solid #8caa99; border-radius: .55rem; background: white; color: inherit; font: inherit; font-size: 1rem; }
+    select { appearance: none; padding-inline-end: 1.75rem; background: linear-gradient(45deg, transparent 50%, var(--accent) 50%) calc(100% - 14px) 50% / 5px 5px no-repeat, linear-gradient(135deg, var(--accent) 50%, transparent 50%) calc(100% - 9px) 50% / 5px 5px no-repeat, white; }
+    input:focus-visible, select:focus-visible, summary:focus-visible, button:focus-visible, a:focus-visible { outline: .15rem solid var(--accent); outline-offset: .15rem; }
+    button, summary { font: inherit; color: var(--accent); cursor: pointer; font-weight: 650; }
+    button { min-height: 2.75rem; padding: .35rem .65rem; border: 1px solid var(--line); background: var(--soft); border-radius: .55rem; font-size: .875rem; }
+    summary { min-height: 2.75rem; padding-block: .6rem; }
+    .advanced, .bird + .bird, .breakdown { border-top: 1px solid var(--line); }
+    .advanced[open] > div { padding-bottom: .25rem; }
+    .count { width: 8rem; margin-top: .65rem; }
+    .bird { margin-top: .8rem; padding-top: .6rem; }
+    .bird .fields { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: .35rem; gap: .5rem; }
+    .result { background: var(--soft); border-color: #b5cfbe; }
+    .result h3 { margin: .65rem 0 .15rem; color: var(--accent); }
+    .result dl > div { display: flex; justify-content: space-between; gap: .5rem; padding-block: .2rem; }
+    .result dd { margin: 0; text-align: right; overflow-wrap: anywhere; font-weight: 650; font-variant-numeric: tabular-nums; }
+    .breakdown { margin-top: .65rem; }
+    .bird-result { padding: .5rem .75rem; border-radius: .6rem; background: #fff; margin-bottom: .5rem; }
+    .bird-result h4 { margin: .5rem 0 .15rem; font-size: .875rem; color: var(--muted); }
+    .table-label { flex: 1; }
+    .note { margin-top: .4rem; }
+    .error { color: #8f3129; background: #fff4f2; border-radius: .6rem; padding: .55rem .7rem; margin: .75rem 0; }
+    footer { display: flex; flex-wrap: wrap; align-items: baseline; gap: .3rem 1rem; padding: .3rem .15rem; }
+    footer a { padding-block: .55rem; color: var(--accent); text-underline-offset: .18rem; }
+    [hidden] { display: none !important; }
+    @media (max-width: 22rem) {
+      main { padding-inline: .7rem; }
+      .panel { padding: .75rem; }
+      .fields { grid-template-columns: 1fr; }
+      .bird .fields { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header class="heading">
+    <h1>Ω计算器</h1>
+    <button id="example" type="button">载入示例</button>
+  </header>
+  <noscript><p class="error">请在支持 JavaScript 的浏览器中打开。</p></noscript>
+  <section class="panel" aria-labelledby="reagentTitle">
+    <h2 id="reagentTitle">试剂</h2>
+    <div class="fields">
+      <label>有效成分
+        <select id="ingredient"><option>BrdU</option><option>EdU</option><option>美洛昔康</option><option value="custom">自定义</option></select>
+      </label>
+      <label id="customField" hidden>成分名称<input id="customName" maxlength="80"></label>
+      <label>每针剂量 <span class="unit">mg/kg</span><input id="dose" type="number" step="any" inputmode="decimal"></label>
+      <label id="workingField">工作液浓度 <span class="unit">mg/mL</span><input id="working" type="number" step="any" inputmode="decimal"></label>
+    </div>
+    <details class="advanced" id="advanced">
+      <summary>原液与配制</summary>
+      <div class="fields">
+        <label>配制方式<select id="mode"><option value="dilute">配制工作液</option><option value="direct">直接使用原液</option></select></label>
+        <label>原液规格<select id="stockType"><option value="concentration">输入浓度</option><option value="bottle">按瓶签计算</option></select></label>
+        <label id="stockField"><span id="stockLabel">原液浓度（选填）</span> <span class="unit">mg/mL</span><input id="stock" type="number" step="any" inputmode="decimal"></label>
+        <label id="mgField" hidden>瓶签总药量 <span class="unit">mg</span><input id="bottleMg" type="number" step="any" inputmode="decimal"></label>
+        <label id="mlField" hidden>瓶签体积 <span class="unit">mL</span><input id="bottleMl" type="number" step="any" inputmode="decimal"></label>
+        <label>原液密度（选填） <span class="unit">g/mL</span><input id="density" type="number" step="any" inputmode="decimal"></label>
+      </div>
+      <p id="concentration" class="small muted note" hidden></p>
+      <p id="stockNotice" class="small error" role="status" hidden></p>
+    </details>
+  </section>
+  <section class="panel" aria-labelledby="birdsTitle">
+    <h2 id="birdsTitle">实验鸟</h2>
+    <label class="count">只数 <span class="unit">1–100</span><input id="birdCount" type="number" min="1" max="100" step="1" inputmode="numeric" value="1"></label>
+    <div id="birds"></div>
+  </section>
+  <p id="notice" class="small error" role="status" hidden></p>
+  <section id="results" class="panel result" aria-labelledby="resultTitle" hidden>
+    <h2 id="resultTitle">用量合计</h2>
+    <p id="totalCount" class="small muted note"></p>
+    <p id="partial" class="small muted note" hidden>原液选项需要检查，以下为可计算的结果。</p>
+    <div id="total"></div>
+    <details class="breakdown" id="breakdown">
+      <summary>逐只明细</summary>
+      <div id="cards"></div>
+    </details>
+  </section>
+  <footer class="small muted" id="offline" hidden>
+    <a href="./index.html" download="Ω计算器.html">下载离线版</a>
+    <span id="offlineReady" hidden>此浏览器已缓存页面，可离线使用。</span>
+  </footer>
+</main>
+<template id="birdTemplate">
+  <section class="bird">
+    <h3></h3>
+    <div class="fields">
+      <label>体重 <span class="unit">g</span><input class="weight" type="number" step="any" inputmode="decimal"></label>
+      <label>每天针数<input class="shots" type="number" min="1" step="1" inputmode="numeric" value="1"></label>
+      <label>注射天数<input class="days" type="number" min="1" step="1" inputmode="numeric" value="1"></label>
+    </div>
+  </section>
+</template>
+<script>
+"use strict";
+const field = id => document.getElementById(id);
+const number = id => field(id).valueAsNumber;
+const entered = input => input.value !== "" || input.validity.badInput;
+const positive = value => Number.isFinite(value) && value > 0;
+const whole = value => Number.isSafeInteger(value) && value > 0;
+const format = new Intl.NumberFormat("zh-CN", { maximumSignificantDigits: 9 });
+const birdRows = [];
+const reserve = 1.2;
+let detailData;
+
+function calculate(birds, dose, working, stock, density) {
+  const rows = birds.map(({weight, shots, days}) => {
+    const count = shots * days;
+    const perShot = weight / 1000 * dose;
+    return {count, perShot, mass: count * perShot};
+  });
+  const count = rows.reduce((sum, row) => sum + row.count, 0);
+  const mass = rows.reduce((sum, row) => sum + row.mass, 0);
+  function quantities(mg) {
+    const stockVolume = stock ? mg / stock * 1000 : null;
+    return {
+      mg,
+      volume: mg / working * 1000,
+      stockVolume,
+      stockMass: stockVolume !== null && density ? stockVolume * density : null
+    };
+  }
+  return {rows, count, mass, quantities};
+}
+
+function synchronizeBirds(count) {
+  while (birdRows.length < count) {
+    const row = field("birdTemplate").content.firstElementChild.cloneNode(true);
+    const heading = row.querySelector("h3");
+    const number = birdRows.length + 1;
+    heading.id = "bird-" + number;
+    heading.textContent = "第 " + number + " 只";
+    row.setAttribute("aria-labelledby", heading.id);
+    birdRows.push({
+      row,
+      weight: row.querySelector(".weight"),
+      shots: row.querySelector(".shots"),
+      days: row.querySelector(".days")
+    });
+    field("birds").append(row);
+  }
+  birdRows.forEach(({row}, index) => { row.hidden = index >= count; });
+}
+
+function showMessage(id, message) {
+  const notice = field(id);
+  notice.textContent = message;
+  notice.hidden = !message;
+}
+
+function line(label, value, unit) {
+  return '<div><dt class="table-label">' + label + '</dt><dd>' + format.format(value) + ' ' + unit + '</dd></div>';
+}
+
+function quantityBlock(title, mg, data, heading) {
+  const q = data.quantities(mg);
+  return '<' + heading + '>' + title + '</' + heading + '><dl>' +
+    line("有效成分质量", q.mg, "mg") +
+    line(data.direct ? "原液体积" : "工作液体积", q.volume, "μL") +
+    (!data.direct && q.stockVolume !== null ? line("所需原液体积", q.stockVolume, "μL") : "") +
+    (q.stockMass !== null ? line("所需原液质量", q.stockMass, "mg") : "") + "</dl>";
+}
+
+function renderDetails() {
+  if (!field("breakdown").open || !detailData) return;
+  field("cards").innerHTML = detailData.rows.map((row, index) =>
+    '<article class="bird-result"><h3>第 ' + (index + 1) + ' 只 · ' + format.format(row.count) + ' 针</h3>' +
+    quantityBlock("每针", row.perShot, detailData, "h4") +
+    quantityBlock("理论总量", row.mass, detailData, "h4") +
+    quantityBlock("备液量（含 20% 预留）", row.mass * reserve, detailData, "h4") +
+    "</article>").join("");
+}
+
+function update() {
+  const ingredient = field("ingredient").value;
+  const name = ingredient === "custom" ? field("customName").value.trim() : ingredient;
+  const direct = field("mode").value === "direct";
+  const bottle = field("stockType").value === "bottle";
+  field("customField").hidden = ingredient !== "custom";
+  field("workingField").hidden = direct;
+  field("stockField").hidden = bottle;
+  field("mgField").hidden = !bottle;
+  field("mlField").hidden = !bottle;
+  field("stockLabel").textContent = direct ? "原液浓度" : "原液浓度（选填）";
+
+  const bottleMg = number("bottleMg");
+  const bottleMl = number("bottleMl");
+  const stock = bottle ? (positive(bottleMg) && positive(bottleMl) ? bottleMg / bottleMl : NaN) : number("stock");
+  const working = direct ? stock : number("working");
+  const stockEntered = (bottle ? ["bottleMg", "bottleMl"] : ["stock"]).some(id => entered(field(id)));
+  field("concentration").hidden = !bottle || !positive(stock);
+  field("concentration").textContent = bottle && positive(stock) ? "原液浓度 " + format.format(stock) + " mg/mL" : "";
+  const dose = number("dose");
+  const density = number("density");
+  const count = number("birdCount");
+  const validCount = whole(count) && count <= 100;
+  if (validCount) synchronizeBirds(count);
+  field("birds").hidden = !validCount;
+  detailData = undefined;
+  field("results").hidden = true;
+  showMessage("notice", "");
+  showMessage("stockNotice", "");
+  if (!validCount) return showMessage("notice", "只数须为 1–100 的整数。");
+  if (!name && entered(field("dose"))) return showMessage("notice", "请填写成分名称。");
+  if (!positive(dose) && entered(field("dose"))) return showMessage("notice", "每针剂量须大于 0。");
+  if (!positive(working) && (direct ? stockEntered : entered(field("working")))) {
+    return showMessage("notice", direct ? "请填写有效的原液浓度或完整瓶签规格。" : "工作液浓度须大于 0。");
+  }
+
+  const birds = birdRows.slice(0, count).map(({weight, shots, days}) => ({
+    weight: weight.valueAsNumber, shots: shots.valueAsNumber, days: days.valueAsNumber,
+    weightEntered: entered(weight)
+  }));
+  const invalidBird = birds.findIndex(bird => (bird.weightEntered && !positive(bird.weight)) || !whole(bird.shots) || !whole(bird.days));
+  if (invalidBird >= 0) return showMessage("notice", "请检查第 " + (invalidBird + 1) + " 只的体重、每天针数和注射天数。");
+  if (!name || !positive(dose) || !positive(working) || birds.some(bird => !positive(bird.weight))) return;
+
+  const useStock = positive(stock) && stock >= working;
+  const useDensity = useStock && positive(density);
+  let stockMessage = "";
+  if (stockEntered && !useStock) {
+    stockMessage = positive(stock) ? "原液浓度须不低于工作液浓度。" : "请检查原液浓度或瓶签规格。";
+  } else if (entered(field("density")) && !useDensity) {
+    stockMessage = "原液质量需使用有效的原液浓度和大于 0 的密度。";
+  }
+  showMessage("stockNotice", stockMessage);
+  field("partial").hidden = !stockMessage;
+
+  const data = calculate(birds, dose, working, useStock ? stock : null, useDensity ? density : null);
+  const validQuantity = mass => Object.values(data.quantities(mass)).every(value => value === null || positive(value));
+  if (!whole(data.count) || !validQuantity(data.mass * reserve) ||
+      data.rows.some(row => !validQuantity(row.perShot) || !validQuantity(row.mass * reserve))) {
+    return showMessage("notice", "输入数值超出计算范围，请检查数值与单位。");
+  }
+  data.direct = direct;
+  detailData = data;
+  field("resultTitle").textContent = name + " 用量合计";
+  field("totalCount").textContent = count + " 只 · 共 " + format.format(data.count) + " 针";
+  field("total").innerHTML = quantityBlock("理论总量", data.mass, data, "h3") +
+    quantityBlock("备液量（含 20% 预留）", data.mass * reserve, data, "h3");
+  renderDetails();
+  field("results").hidden = false;
+}
+
+function selectIngredient() {
+  for (const id of ["dose", "working", "stock", "bottleMg", "bottleMl", "density"]) field(id).value = "";
+  const meloxicam = field("ingredient").value === "美洛昔康";
+  field("mode").value = meloxicam ? "direct" : "dilute";
+  field("stockType").value = meloxicam ? "bottle" : "concentration";
+  field("advanced").open = meloxicam;
+}
+
+document.querySelector("main").addEventListener("input", event => {
+  if (event.target.tagName === "INPUT") update();
+});
+document.querySelector("main").addEventListener("change", event => {
+  if (event.target.tagName !== "SELECT") return;
+  if (event.target.id === "ingredient") selectIngredient();
+  update();
+});
+field("breakdown").addEventListener("toggle", renderDetails);
+field("example").addEventListener("click", () => {
+  field("ingredient").value = "BrdU";
+  selectIngredient();
+  field("dose").value = "50";
+  field("working").value = "10";
+  field("birdCount").value = "2";
+  synchronizeBirds(2);
+  const exampleBirds = [["12", "5", "1"], ["12", "2", "3"]];
+  exampleBirds.forEach(([weight, shots, days], index) => {
+    birdRows[index].weight.value = weight;
+    birdRows[index].shots.value = shots;
+    birdRows[index].days.value = days;
+  });
+  update();
+});
+
+update();
+if (location.protocol === "https:" || location.protocol === "http:") {
+  field("offline").hidden = false;
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("./offline-worker.js").then(() => navigator.serviceWorker.ready)
+      .then(() => { field("offlineReady").hidden = false; }).catch(() => {});
+  }
+}
+</script>
+</body>
+</html>
