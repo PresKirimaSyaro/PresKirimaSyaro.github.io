@@ -1,0 +1,12 @@
+/* Keep comments readable on the code blocks' dark background in both themes. */
+.post-content .chroma .c,
+.post-content .chroma .ch,
+.post-content .chroma .cm,
+.post-content .chroma .c1,
+.post-content .chroma .cs,
+.post-content .chroma .cp,
+.post-content .chroma .cpf,
+.post-content .chroma .sd {
+    color: #a6adc8;
+    font-style: normal;
+}
